@@ -1,0 +1,7 @@
+{
+  "name": "2048",
+  "id": "com.game.2048",
+  "version": "1.0.0",
+  "orientation": "landscape",
+  "fullscreen": "true"
+}

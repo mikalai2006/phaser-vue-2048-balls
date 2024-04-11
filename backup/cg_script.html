@@ -1,0 +1,102 @@
+<!-- SDK START---------------------------------->
+<script src="https://sdk.crazygames.com/crazygames-sdk-v3.js"></script>
+<script>
+  let cgsdk
+  const nameSave = 'game2048'
+  window.setLB = () => {}
+  window.onSdkGameLoadingStart = () => {
+    // console.log(window.CrazyGames, window.sdk)
+    window.CrazyGames.SDK.game.loadingStart()
+  }
+  window.onSdkGameLoadingStop = () => {
+    window.CrazyGames.SDK.game.loadingStop()
+  }
+  window.onHappyTime = () => {
+    window.CrazyGames.SDK.game.happytime()
+  }
+  // window.onClearBanner = (containerId) => {
+  //   window.CrazyGames.SDK.banner.clearBanner(containerId)
+  // }
+  // window.onShowBanner = async (containerId, width, height, callback) => {
+  //   try {
+  //     // await is not mandatory when requesting banners, but it will allow you to catch errors
+  //     await window.CrazyGames.SDK.banner.requestBanner({
+  //       id: containerId,
+  //       width,
+  //       height
+  //     })
+  //     callback && callback()
+  //   } catch (e) {
+  //     // console.log('Banner request error', e)
+  //   }
+  // }
+  window.onGamePlayStart = () => {
+    window.CrazyGames.SDK.game.gameplayStart()
+  }
+  window.onGameplayStop = () => {
+    window.CrazyGames.SDK.game.gameplayStop()
+  }
+
+  window.showRewardedAdv = function (callback) {
+    const callbacks = {
+      adFinished: () => {
+        // console.log('End rewarded ad')
+        callback && callback()
+      },
+      adError: (error) => {
+        // console.log('Error rewarded ad', error)
+        callback && callback()
+      },
+      adStarted: () => {
+        // console.log('Start rewarded ad')
+      }
+    }
+    window.CrazyGames.SDK.ad.requestAd('rewarded', callbacks)
+  }
+  // window.showFullSrcAdv = function (callback) {
+  //   const callbacks = {
+  //     adFinished: () => {
+  //       // console.log('End midgame ad')
+  //       callback && callback()
+  //     },
+  //     adError: (error) => {
+  //       // console.log('Error midgame ad', error)
+  //       callback && callback()
+  //     },
+  //     adStarted: () => console.log('Start midgame ad')
+  //   }
+  //   window.CrazyGames.SDK.ad.requestAd('midgame', callbacks)
+  // }
+
+  window.saveGameData = function (data) {
+    window.CrazyGames.SDK.data.setItem(nameSave, JSON.stringify(data))
+    // console.log('SAVE')
+  }
+
+  window.loadGameData = function (data) {
+    const stringGameData = window.CrazyGames.SDK.data.getItem(nameSave)
+    const jsonUserData = JSON.parse(stringGameData)
+    // console.group('LoadExtern')
+    // console.log(jsonUserData)
+    // console.groupEnd()
+
+    if (window.game) {
+      window.game.onLoadGameData(jsonUserData)
+    }
+    // console.log('LOAD')
+    return jsonUserData
+  }
+  ;(async function () {
+    try {
+      await window.CrazyGames.SDK.init()
+      window.cgsdk = window.CrazyGames
+
+      // const user = await window.CrazyGames.SDK.user.getUser()
+      // console.log(user)
+      window.loadGameData()
+    } catch (error) {
+      // console.log(error)
+    }
+  })()
+</script>
+<!-- SDK END---------------------------------->

@@ -25,7 +25,9 @@
         "build": "vite build --config vite/config.prod.mjs"
     },
     "dependencies": {
+        "lodash": "^4.17.21",
         "phaser": "^3.80.1",
+        "planck": "^1.0.0",
         "vue": "^3.4.20"
     },
     "devDependencies": {

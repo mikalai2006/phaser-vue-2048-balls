@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Phaser Vue Template</title>
+    <script type="module" crossorigin src="./assets/index-CHDld2Yn.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/phaser-o_ujPeV6.js" />
+    <link rel="stylesheet" crossorigin href="./assets/index-o-plT5fF.css" />
+    <!-- Yandex Games SDK START---------------------------------->
+    <script src="https://yandex.ru/games/sdk/v2"></script>
+    <script>
+      window.ysdk = null
+      var player = null
+      var lb = null
+      window.loadGameData = function () {}
+      window.saveGameData = function (data) {}
+      window.showRewardAdv = function (callback) {
+        ysdk.adv.showRewardedVideo({
+          callbacks: {
+            // onOpen: () => {
+            //   console.log("Video ad open.");
+            // },
+            // onRewarded: () => {
+            //   console.log("Rewarded for scramble!");
+            //   myGameInstance.SendMessage("AdManager", "ScrambleByAdv");
+            // },
+            onClose: () => {
+              console.log('Video ad closed.')
+            },
+            onError: function (error) {
+              console.log('Video error.')
+            }
+          }
+        })
+      }
+      window.showFullscreenAdv = function (callback) {
+        ysdk.adv.showFullscreenAdv({
+          callbacks: {
+            onClose: function (wasShown) {
+              console.log('ShowAdvFullScreen onClose ', wasShown)
+            },
+            onError: function (error) {
+              console.log('ShowAdvFullScreen onError ', error)
+            },
+            onOffline: function (error) {
+              console.log('ShowAdvFullScreen onOffline ', error)
+            }
+          }
+        })
+      }
+
+      YaGames.init().then((ysdk) => {
+        console.log('Yandex SDK initialized')
+        window.ysdk = ysdk
+
+        initializeLib()
+      })
+
+      function initializeLib() {
+        ysdk.adv.showFullscreenAdv()
+
+        ysdk.getPlayer().then((_player) => {
+          console.log('Player initialized start')
+          player = _player
+          window.saveGameData = function (data) {
+            player.setData(data)
+            console.log('SAVE')
+          }
+          window.loadGameData = function (data) {
+            player.getData().then((jsonUserData) => {
+              console.group('LoadExtern')
+              console.log(jsonUserData)
+              console.groupEnd()
+
+              if (window.game) {
+                window.game.onLoadGameData(jsonUserData)
+              }
+              console.log('LOAD')
+              return jsonUserData
+            })
+          }
+          window.loadGameData()
+
+          // // set callback for save player data.
+          // if (window.game) {
+          //   window.game.callbackSaveGameData = (data) => {
+          //     console.log('Save callback from index', data)
+          //     player.setData(data)
+          //   }
+          // }
+
+          console.log('Player initialized end')
+          return player
+        })
+
+        ysdk.getLeaderboards().then((_lb) => (lb = _lb))
+      }
+    </script>
+    <!-- Yandex Games SDK END---------------------------------->
+  </head>
+
+  <body>
+    <div id="app">
+      <div id="game-container"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,160 @@
+<!-- Yandex Games SDK START---------------------------------->
+<script src="https://yandex.ru/games/sdk/v2"></script>
+<script>
+  window.ysdk = null
+  var player = null
+  var lb = null
+  window.getLang = function () {
+    var lang = ysdk.environment.i18n.lang
+    window.game.onInitLang(lang)
+    return lang
+  }
+  window.loadGameData = function () {}
+  window.saveGameData = function (data) {}
+  window.setLB = function (data) {
+    ysdk.getLeaderboards().then((lb) => {
+      ysdk.isAvailableMethod('leaderboards.setLeaderboardScore').then((status) => {
+        if (status) {
+          lb.setLeaderboardScore('Total', data)
+        }
+      })
+    })
+  }
+  window.getLB = function () {
+    const result = {}
+    if (!ysdk) {
+      return result
+    }
+    ysdk.getLeaderboards().then((lb) => {
+      // Получение 10 топов и 3 записей возле пользователя
+      lb.getLeaderboardEntries('Total', {
+        quantityTop: 5
+        // includeUser: true,
+        // quantityAround: 3
+      }).then((res) => {
+        result.leaderboard = {
+          title: []
+        }
+        for (var key of Object.keys(res.leaderboard.title)) {
+          result.leaderboard.title.push({
+            lang: key,
+            value: res.leaderboard.title[key]
+          })
+        }
+
+        result.userRank = res.userRank
+        result.entries = []
+
+        for (let i = 0; i < res.entries.length; i++) {
+          const userData = res.entries[i]
+          result.entries.push({
+            rank: userData.rank,
+            score: userData.score,
+            name: userData.player.publicName,
+            lang: userData.player.lang,
+            photo: userData.player.getAvatarSrc('middle')
+          })
+        }
+
+        console.group('GetLeaderBoard')
+        console.log(result)
+        console.groupEnd()
+        window.game.onLoadLB(result)
+        return result
+      })
+    })
+  }
+  window.showRewardedAdv = function (callback) {
+    ysdk.adv.showRewardedVideo({
+      callbacks: {
+        // onOpen: () => {
+        //   console.log("Video ad open.");
+        // },
+        // onRewarded: () => {
+        //   console.log("Rewarded for scramble!");
+        //   myGameInstance.SendMessage("AdManager", "ScrambleByAdv");
+        // },
+        onClose: () => {
+          console.log('Video ad closed.')
+          callback && callback()
+        },
+        onError: function (error) {
+          console.log('Video error.')
+        }
+      }
+    })
+  }
+  window.showFullSrcAdv = function (callback) {
+    ysdk.adv.showFullscreenAdv({
+      callbacks: {
+        onClose: function (wasShown) {
+          console.log('ShowAdvFullScreen onClose ', wasShown)
+          // if (window.game) {
+          //   window.game.onShowButtonNext(wasShown)
+          // }
+          callback && callback()
+        },
+        onError: function (error) {
+          console.log('ShowAdvFullScreen onError ', error)
+          callback && callback()
+        }
+        // onOffline: function (error) {
+        //   console.log('ShowAdvFullScreen onOffline ', error)
+        // }
+      }
+    })
+  }
+  window.initializeLib = () => {
+    // ysdk.adv.showFullscreenAdv()
+    // window.showFullSrcAdv()
+
+    ysdk.getPlayer().then((_player) => {
+      // console.log('Player initialized start')
+      player = _player
+      window.saveGameData = function (data) {
+        player.setData(data)
+        console.log('SAVE')
+      }
+      window.loadGameData = function (data) {
+        player.getData().then((jsonUserData) => {
+          console.group('LoadExtern')
+          console.log(jsonUserData)
+          console.groupEnd()
+
+          if (window.game) {
+            window.game.onLoadGameData(jsonUserData)
+          }
+          return jsonUserData
+        })
+      }
+      window.loadGameData()
+      window.getLang()
+
+      ysdk.getLeaderboards().then((_lb) => {
+        lb = _lb
+        window.getLB()
+      })
+      // // set callback for save player data.
+      // if (window.game) {
+      //   window.game.callbackSaveGameData = (data) => {
+      //     console.log('Save callback from index', data)
+      //     player.setData(data)
+      //   }
+      // }
+
+      // console.log('Player initialized end')
+      return player
+    })
+  }
+  window.initSDK = () => {
+    YaGames.init().then((ysdk) => {
+      console.log('Yandex SDK initialized')
+      window.ysdk = ysdk
+
+      window.showFullSrcAdv()
+
+      window.initializeLib()
+    })
+  }
+</script>
+<!-- Yandex Games SDK END---------------------------------->
