@@ -42,24 +42,24 @@ export const langs = {
     job: 'Задание: Уничтожить следующие шары',
     help: {
       help_move: {
-        title: 'Прицелься и брось мяч',
-        text: 'Перемещай каретку - перемещая мышь над полем с мячами (нажми пальцем на поле с мячами и перемещай на мобильных устройствах). Нажми левую кнопку мыши, над полем с мячами (отпусти палец на мобильных устройствах), чтобы бросить мяч.'
+        title: 'Прицелься и брось шарик',
+        text: 'Перемещай каретку - перемещая мышь над полем с шариками (нажми пальцем на поле с шариками и перемещай на сенсорных устройствах). Нажми левую кнопку мыши, над полем с шариками (отпусти палец на сенсорных устройствах), чтобы бросить шарик.'
       },
       help_floor: {
         title: 'Движение пола',
-        text: 'По ходу выполнения задания, пол будет подниматься по таймеру. При выполнении серии разрушений мячей(комбо) - пол будет опускаться'
+        text: 'По ходу выполнения задания, пол будет подниматься по таймеру. При выполнении серии разрушений шариков (комбо) - пол будет опускаться'
       },
       help_rotate_zoom: {
-        title: 'Поменять следующий мяч',
-        text: 'Нажми на каретку или на кнопку со стрелочками, чтобы поменять местами мячи в каретке (также кнопка ПРОБЕЛ).'
+        title: 'Выбери следующий шарик',
+        text: 'Нажми на каретку или на кнопку со стрелочками, чтобы поменять местами шарики в каретке (также кнопка ПРОБЕЛ).'
       },
       help_bomb: {
-        title: 'Разрушай мячи',
-        text: 'Чтобы разрушить мячи на поле, используй кнопку молнии.'
+        title: 'Разрушай шарики',
+        text: 'Чтобы разрушить шарики на поле, используй кнопку молнии.'
       },
       help_general: {
         title: 'Об игре',
-        text: 'В каждом раунде игры, нужно уничтожить мячи из задания. Игра продолжается пока любой мяч не выпадет из корзины.'
+        text: 'В каждом раунде игры, нужно уничтожить шарики из задания. Игра продолжается пока один из шариков не выпадет из корзины.'
       }
     }
   },
@@ -79,15 +79,14 @@ export const langs = {
     gameover_title: 'The game is lost',
     gameover_btn_continue_by_adv: 'Continue to view ads',
     gameover_btn_new_game: 'Start a new game',
-    current_score: 'Current account',
+    current_score: 'Current score',
     btn_startgame: 'Start the game',
     btn_continue: 'Continue game',
     leaderboard_title: 'Leaders in the game',
     lang_title: 'Language in the game',
     close: 'Close',
     add_bomb_max: 'For destroying the largest balls, you get a bonus - fire lightning!',
-    add_bomb_seria:
-      'For a large series of destruction of balls, you get a bonus - fiery lightning!',
+    add_bomb_seria: 'For a large series of destruction of balls, you get a bonus - fire lightning!',
     next: 'Далее',
     bonusText: [
       '',

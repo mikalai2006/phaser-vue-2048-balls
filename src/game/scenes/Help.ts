@@ -45,7 +45,7 @@ export class Help extends Scene {
         stroke: '#000000',
         strokeThickness: 0,
         wordWrap: {
-          width: 500
+          width: 700
         },
         align: 'center'
       })

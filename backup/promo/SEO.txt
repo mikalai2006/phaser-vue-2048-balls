@@ -1,0 +1,36 @@
+Брось вызов соперникам! Победит тот, кто больше уничтожит шариков и больше наберет баллов. Игра с интересной динамической физикой.
+
+
+Игровой процесс построен на реальной физике.
+Принцип игры: объединяй шарики одного цвета и цифры, чтобы создать шарики большего размера и номинала, тем самым получая баллы и выполняя задания в каждом раунде.
+
+Бросай шарики в корзину и выполняй задания, повышайте свои счет. Займи почетное место победителя в таблице лидеров!
+
+
+В каждом раунде нужно уничтожить определенное количество разных шариков.
+Для того чтобы бросить шарик в корзину - прицелься зажав левую кнопку мыши и отпусти кнопку, чтобы бросить шарик в корзину.
+На сенсорных устройствах можно просто нажимать на место куда бросить шарик.
+
+Используй кнопку со стрелками, чтобы поменять местами текущий шар в каретке со следующим. Также можно кликнуть на каретке со следующими шарами, чтобы поменять их местами(на компьютерах можно использовать клавишу ПРОБЕЛ).
+По мере выполнения задания - увеличивается скорость движения пола в корзине, что поднимает шарики. Пол может и опускаться, если выполнить серию уничтожений шариков.
+Если в корзине слишком много шариков, можно часть их уничтожить, воспользовавшись кнопкой - МОЛНИЯ (создать огненную молнию и бросить ее в корзину).
+Игра продолжается пока один из шариков не выпадет из корзины.
+
+
+Challenge your opponents! The one who destroys the most balls and scores the most points wins. A game with interesting dynamic physics.
+
+
+The gameplay is based on real physics.
+How to play: Combine balls of the same color and number to create balls of a larger size and value, thereby receiving points and completing tasks in each round.
+
+Throw balls into the basket and complete tasks to increase your score. Take pride of place as a winner on the leaderboard!
+
+
+In each round you need to destroy a certain number of different balls.
+In order to throw the ball into the basket, aim while holding the left mouse button and release the button to throw the ball into the basket.
+On touch devices, you can simply click on the place where to throw the ball.
+
+Use the arrow button to swap the current ball in the carriage with the next one. You can also click on the carriage with the next balls to swap their places (on computers you can use the SPACE).
+As the task is completed, the speed of movement of the floor in the basket increases, which raises the balls. The floor can also lower if you perform a series of destruction of balls.
+If there are too many balls in the basket, you can destroy some of them by using the LIGHTNING button (create a fiery lightning bolt and throw it into the basket).
+The game continues until one of the balls falls out of the basket.

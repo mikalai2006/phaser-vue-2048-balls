@@ -347,7 +347,7 @@ const showButtonNext = (wasShow: boolean) => {
 
 const onInitLang = (langCode: string) => {
   console.log('langCode=', langCode)
-  if (langCode && !gameState.value.lang) {
+  if (langCode) {
     gameState.value.lang = langCode
     // onSaveGameData(toRaw(gameState.value))
     onChangeLang(gameState.value.lang)

@@ -9,8 +9,22 @@
     window.game.onInitLang(lang)
     return lang
   }
-  window.loadGameData = function () {}
-  window.saveGameData = function (data) {}
+  window.saveGameData = function (data) {
+    player.setData(data)
+    // console.log('SAVE')
+  }
+  window.loadGameData = function (data) {
+    player.getData().then((jsonUserData) => {
+      // console.group('LoadExtern')
+      // console.log(jsonUserData)
+      // console.groupEnd()
+
+      if (window.game) {
+        window.game.onLoadGameData(jsonUserData)
+      }
+      return jsonUserData
+    })
+  }
   window.setLB = function (data) {
     ysdk.getLeaderboards().then((lb) => {
       ysdk.isAvailableMethod('leaderboards.setLeaderboardScore').then((status) => {
@@ -56,9 +70,9 @@
           })
         }
 
-        console.group('GetLeaderBoard')
-        console.log(result)
-        console.groupEnd()
+        // console.group('GetLeaderBoard')
+        // console.log(result)
+        // console.groupEnd()
         window.game.onLoadLB(result)
         return result
       })
@@ -88,7 +102,7 @@
     ysdk.adv.showFullscreenAdv({
       callbacks: {
         onClose: function (wasShown) {
-          console.log('ShowAdvFullScreen onClose ', wasShown)
+          // console.log('ShowAdvFullScreen onClose ', wasShown)
           // if (window.game) {
           //   window.game.onShowButtonNext(wasShown)
           // }
@@ -109,40 +123,17 @@
     // window.showFullSrcAdv()
 
     ysdk.getPlayer().then((_player) => {
-      // console.log('Player initialized start')
       player = _player
-      window.saveGameData = function (data) {
-        player.setData(data)
-        console.log('SAVE')
-      }
-      window.loadGameData = function (data) {
-        player.getData().then((jsonUserData) => {
-          console.group('LoadExtern')
-          console.log(jsonUserData)
-          console.groupEnd()
 
-          if (window.game) {
-            window.game.onLoadGameData(jsonUserData)
-          }
-          return jsonUserData
-        })
-      }
       window.loadGameData()
+
       window.getLang()
 
       ysdk.getLeaderboards().then((_lb) => {
         lb = _lb
         window.getLB()
       })
-      // // set callback for save player data.
-      // if (window.game) {
-      //   window.game.callbackSaveGameData = (data) => {
-      //     console.log('Save callback from index', data)
-      //     player.setData(data)
-      //   }
-      // }
 
-      // console.log('Player initialized end')
       return player
     })
   }
