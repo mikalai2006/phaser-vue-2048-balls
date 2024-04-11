@@ -56,7 +56,7 @@ export class Preloader extends Scene {
     this.load.atlas('flares', 'particles/flares.png', 'particles/flares.json')
 
     this.load.image('logo', 'logo.png')
-    this.load.image('bg', 'img/bg.png')
+    // this.load.image('bg', 'img/bg.png')
 
     this.load.image('ball', 'img/ball.png')
     this.load.image('panel', 'img/panel.png')
@@ -72,8 +72,8 @@ export class Preloader extends Scene {
     this.load.image('button', 'img/button.png')
     this.load.image('lang', 'img/lang.png')
     this.load.image('home', 'img/home.png')
-    this.load.image('rate', 'img/rate.png')
-    this.load.image('danger', 'img/danger.png')
+    // this.load.image('rate', 'img/rate.png')
+    // this.load.image('danger', 'img/danger.png')
     this.load.image('adv', 'img/adv.png')
     this.load.image('repeat', 'img/repeat.png')
     this.load.image('floor', 'img/floor.png')
@@ -97,10 +97,10 @@ export class Preloader extends Scene {
     // this.load.image('record_level_5000', 'img/record/record_level_5000.png')
 
     // this is how to load a sprite sheet
-    this.load.spritesheet('faces', 'img/faces.png', {
-      frameWidth: 45,
-      frameHeight: 25
-    })
+    // this.load.spritesheet('faces', 'img/faces.png', {
+    //   frameWidth: 45,
+    //   frameHeight: 25
+    // })
     this.load.spritesheet('sound', 'img/sound.png', {
       frameWidth: 256,
       frameHeight: 256
@@ -142,7 +142,7 @@ export class Preloader extends Scene {
     this.load.image('placeholder', 'img/placeholder.png')
 
     // this is how to load a bitmap font
-    this.load.bitmapFont('font', 'img/fonts.png', 'img/fonts.fnt')
+    // this.load.bitmapFont('font', 'img/fonts.png', 'img/fonts.fnt')
 
     // Audio.
     this.load.audio('ball_start', [

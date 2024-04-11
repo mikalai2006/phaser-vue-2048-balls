@@ -75,7 +75,7 @@ export class Home extends Scene {
     //   .setAlpha(0.05)
     //   .setOrigin(0)
     const rate = this.add
-      .image(50, 70, 'rate')
+      .image(50, 70, 'crown')
       .setTint(0xffffff)
       .setScale(0.5)
       .setDepth(10)
