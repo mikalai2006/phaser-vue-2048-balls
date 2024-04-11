@@ -118,12 +118,12 @@ export class Preloader extends Scene {
       frameHeight: 128
     })
     this.load.spritesheet('help_move', 'help/help_move.png', {
-      frameWidth: 400,
-      frameHeight: 374
+      frameWidth: 300,
+      frameHeight: 406
     })
     this.load.spritesheet('help_bomb', 'help/help_bomb.png', {
-      frameWidth: 400,
-      frameHeight: 374
+      frameWidth: 300,
+      frameHeight: 344
     })
     this.load.spritesheet('help_rotate_zoom', 'help/help_rotate_zoom.png', {
       frameWidth: 274,
