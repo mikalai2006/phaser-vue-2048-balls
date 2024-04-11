@@ -31,7 +31,7 @@ export const GameOptions: any = {
   maxBallSizeForAddBonusBomb: 2048,
 
   // floor.
-  maxTimeForChangeFloorY: 8000,
+  maxTimeForChangeFloorY: 7000,
   minTimeForChangeFloorY: 3000,
   stepChangeFloor: 5,
   durationFloor: 300,

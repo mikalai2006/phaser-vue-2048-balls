@@ -1072,7 +1072,13 @@ export class Game extends Scene {
           delay: 100,
           callback: () => {
             if (dataBall.v < GameOptions.bodies.length) {
-              this.createBall(toPixels(dataBall.x), toPixels(dataBall.y), dataBall.v, dataBall.a)
+              this.createBall(
+                toPixels(dataBall.x),
+                toPixels(dataBall.y),
+                dataBall.v,
+                dataBall.a,
+                true
+              )
               // const bodies = []
               // for (let body = this.world.getBodyList(); body; body = body.getNext()) {
               //   bodies.push(body)
@@ -1477,7 +1483,13 @@ export class Game extends Scene {
   }
 
   // method to create a physics ball
-  createBall(posX: number, posY: number, value: number, angle: number = 0): void {
+  createBall(
+    posX: number,
+    posY: number,
+    value: number,
+    angle: number = 0,
+    isMinVelocity = false
+  ): void {
     // console.log('createBall: ', posX, posY, value)
 
     // define ball and face sprites
@@ -1580,11 +1592,13 @@ export class Game extends Scene {
     ball.setLinearVelocity(
       new Planck.Vec2(
         0.0,
-        clamp(
-          ((this.gameData.jobTotal - jobScore) / this.gameData.jobTotal) * 100,
-          GameOptions.minVelocity,
-          GameOptions.maxVelocity
-        )
+        !isMinVelocity
+          ? clamp(
+              ((this.gameData.jobTotal - jobScore) / this.gameData.jobTotal) * 100,
+              GameOptions.minVelocity,
+              GameOptions.maxVelocity
+            )
+          : 0
       )
     )
 
@@ -2315,7 +2329,13 @@ export class Game extends Scene {
           delay: 100,
           callback: () => {
             if (contact.value < GameOptions.bodies.length) {
-              this.createBall(toPixels(contact.point.x), toPixels(contact.point.y), contact.value)
+              this.createBall(
+                toPixels(contact.point.x),
+                toPixels(contact.point.y),
+                contact.value,
+                0,
+                true
+              )
 
               const t = this.add
                 .text(
