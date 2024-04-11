@@ -10,18 +10,16 @@ This template has been updated for:
 - [Vue 3.4.19](https://github.com/vuejs)
 - [Vite 5.1.4](https://github.com/vitejs/vite)
 
-![screenshot](screenshot.png)
-
 ## Requirements
 
 [Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
 
 ## Available Commands
 
-| Command | Description |
-|---------|-------------|
-| `npm install` | Install project dependencies |
-| `npm run dev` | Launch a development web server |
+| Command         | Description                                    |
+| --------------- | ---------------------------------------------- |
+| `npm install`   | Install project dependencies                   |
+| `npm run dev`   | Launch a development web server                |
 | `npm run build` | Create a production build in the `dist` folder |
 
 ## Writing Code
@@ -32,22 +30,6 @@ The local development server runs on `http://localhost:8080` by default. Please 
 
 Once the server is running you can edit any of the files in the `src` folder. Vite will automatically recompile your code and then reload the browser.
 
-## Template Project Structure
-
-We have provided a default project structure to get you started. This is as follows:
-
-- `index.html` - A basic HTML page to contain the game.
-- `src` - Contains the Vue source code.
-- `src/main.js` - The main **Vue** entry point. This bootstraps the Vue application.
-- `src/App.vue` - The main Vue component.
-- `src/game/PhaserGame.vue` - The Vue component that initializes the Phaser Game and serve like a bridge between Vue and Phaser.
-- `src/game/EventBus.js` - A simple event bus to communicate between Vue and Phaser.
-- `src/game` - Contains the game source code.
-- `src/game/main.js` - The main **game** entry point. This contains the game configuration and start the game.
-- `src/game/scenes/` - The Phaser Scenes are in this folder.
-- `public/style.css` - Some simple CSS rules to help with page layout.
-- `public/assets` - Contains the static assets used by the game.
-
 ## Vue Bridge
 
 The `PhaserGame.vue` component is the bridge between Vue and Phaser. It initializes the Phaser game and passes events between the two.
@@ -56,16 +38,16 @@ To communicate between Vue and Phaser, you can use the **EventBus.js** file. Thi
 
 ```js
 // In Vue
-import { EventBus } from './EventBus';
+import { EventBus } from './EventBus'
 
 // Emit an event
-EventBus.emit('event-name', data);
+EventBus.emit('event-name', data)
 
 // In Phaser
 // Listen for an event
 EventBus.on('event-name', (data) => {
-    // Do something with the data
-});
+  // Do something with the data
+})
 ```
 
 In addition to this, the `PhaserGame` component exposes the Phaser game instance along with the most recently active Phaser Scene. You can pick these up from Vue via `(defineExpose({ scene, game }))`.
@@ -80,22 +62,18 @@ You can get the current Phaser Scene from the component event `"current-active-s
 
 **Important**: When you add a new Scene to your game, make sure you expose to Vue by emitting the `"current-scene-ready"` event via the `EventBus`, like this:
 
-
 ```js
-class MyScene extends Phaser.Scene
-{
-    constructor ()
-    {
-        super('MyScene');
-    }
+class MyScene extends Phaser.Scene {
+  constructor() {
+    super('MyScene')
+  }
 
-    create ()
-    {
-        // Your Game Objects and logic here
+  create() {
+    // Your Game Objects and logic here
 
-        // At the end of create method:
-        EventBus.emit('current-scene-ready', this);
-    }
+    // At the end of create method:
+    EventBus.emit('current-scene-ready', this)
+  }
 }
 ```
 
@@ -115,7 +93,7 @@ const game = toRaw(phaserRef.value.game);
 const scene = toRaw(phaserRef.value.scene);
 
 const onCurrentActiveScene = (scene) => {
-    
+
     // This is invoked
 
 }
@@ -145,15 +123,15 @@ import logoImg from './assets/logo.png'
 To load static files such as audio files, videos, etc place them into the `public/assets` folder. Then you can use this path in the Loader calls within Phaser:
 
 ```js
-preload ()
+preload()
 {
-    //  This is an example of an imported bundled image.
-    //  Remember to import it at the top of this file
-    this.load.image('logo', logoImg);
+  //  This is an example of an imported bundled image.
+  //  Remember to import it at the top of this file
+  this.load.image('logo', logoImg)
 
-    //  This is an example of loading a static image
-    //  from the public/assets folder:
-    this.load.image('background', 'assets/bg.png');
+  //  This is an example of loading a static image
+  //  from the public/assets folder:
+  this.load.image('background', 'assets/bg.png')
 }
 ```
 
@@ -163,7 +141,7 @@ When you issue the `npm run build` command, all static assets are automatically 
 
 After you run the `npm run build` command, your code will be built into a single bundle and saved to the `dist` folder, along with any other assets your project imported, or stored in the public assets folder.
 
-In order to deploy your game, you will need to upload *all* of the contents of the `dist` folder to a public facing web server.
+In order to deploy your game, you will need to upload _all_ of the contents of the `dist` folder to a public facing web server.
 
 ## Customizing the Template
 
